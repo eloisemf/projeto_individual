@@ -44,7 +44,37 @@ while True:
             print(f'Nome: {candidatos[i][0]}')
             print(f'Resultado: {candidatos[i][1]}\n')
             print('********************************\n')
-            
+    
+    elif menu == 2:
+        def buscar(candidatos, e, t, p, s):
+            candidato_ideal = []
+            for escolhido, resultado in candidatos:
+                notas = resultado.split('_')
+                e_nota = int(notas[0][1:])
+                t_nota = int(notas[1][1:])
+                p_nota = int(notas[2][1:])
+                s_nota = int(notas[3][1:])
+                if e_nota >= e and t_nota >= t and p_nota >= p and s_nota >= s:
+                    candidato_ideal.append(escolhido)
+            return candidato_ideal
+        e = int(input('Insira nota mínima necessária para entrevista: '))
+        t = int(input('Insira nota mínima necessária para teste teórico: '))
+        p = int(input('Insira nota mínima necessária para teste prático: '))
+        s = int(input('Insira nota mínima necessária para soft skills: '))
+
+        candidato_ideal = buscar(candidatos, e, t, p, s)
+        if candidato_ideal:
+            print('Candidato(s) aprovado(s): ')
+            for candidato in candidato_ideal:
+                print(candidato)
+        else:
+            print('Não existe candidato apto para essa vaga')
+    
+    elif menu == 0:
+        print('Fechando programa.')
+        break
+    else:
+        print('Digite uma opção válida!')
   
         
 
